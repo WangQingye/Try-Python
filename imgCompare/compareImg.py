@@ -36,5 +36,7 @@ def compareImg(pathA, pathB):
     a = getImageHash(pathA)
     b = getImageHash(pathB)
     per =  getPercent(a,b)
-    print ('图片相似度:' + str(per))
+    print ('与'+ pathB[:-4] +'相似度:' + str(per))
     return per
+
+# print (compareImg('shimen.jpg', 'now.jpg'))

@@ -33,13 +33,10 @@ def getRandomInt(a,b):
 # 取一个随机小于1的小数，保留a位
 def getRandomfloat(a):
     return round(random.random(),a)
-print(getRandomfloat(1))
 
-
-
+# pymouse无法实现拖拽，固重新编写一个拖拽函数
 SW = 1920
 SH = 1080
-# pymouse无法实现拖拽，固重新编写一个拖拽函数
 def mouse_drag(x,y,x2,y2):
     mouse.move(x,y)
     # windll.user32.SetCursorPos(x, y)    #鼠标移动到  

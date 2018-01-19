@@ -4,6 +4,8 @@ import pytesseract
 from compareImg import compareImg
 from utils import *
 from pymouse import PyMouse
+import win32api
+import win32con
 import time
 mouse = PyMouse()
 # 检测某一个区位
@@ -32,3 +34,19 @@ def getRandomInt(a,b):
 def getRandomfloat(a):
     return round(random.random(),a)
 print(getRandomfloat(1))
+
+
+
+SW = 1920
+SH = 1080
+# pymouse无法实现拖拽，固重新编写一个拖拽函数
+def mouse_drag(x,y,x2,y2):
+    mouse.move(x,y)
+    # windll.user32.SetCursorPos(x, y)    #鼠标移动到  
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)    #左键按下
+    time.sleep(0.2)
+    mw = int(x2 * 65535 / SW) 
+    mh = int(y2 * 65535 / SH)
+    win32api.mouse_event(win32con.MOUSEEVENTF_ABSOLUTE + win32con.MOUSEEVENTF_MOVE, mw, mh, 0, 0)    
+    time.sleep(0.2)
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
